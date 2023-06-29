@@ -174,7 +174,7 @@ impl Default for FapMetadata {
 		                                          .map_err(|err| println!("cargo:warning=Failed to get crate version: {err}"))
 		                                          .ok();
 
-		Self { id: crate::crate_name().ok(),
+		Self { id: crate::crate_name().ok().map(|name| name.replace("-", "_") ),
 		       ty: Some(DEFAULT_TYPE.to_owned()),
 		       version,
 		       description: crate::crate_descr().ok()

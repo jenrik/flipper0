@@ -330,7 +330,7 @@ jobs:
         if: matrix.crate.fap
         run: |
           cd $FLIPPER_FW_SRC_PATH
-          ./fbt${{ env.FBT_SHELL_EXT }} fap_${{ matrix.crate.name }}
+          ./fbt${{ env.FBT_SHELL_EXT }} fap_$(echo ${{ matrix.crate.name }} | sed "s/-/_/g")
           # COMPACT=${{ matrix.profile && 1 || 0 }} DEBUG=${{ matrix.profile && 0 || 1 }}
 
   build-crates-examples:
