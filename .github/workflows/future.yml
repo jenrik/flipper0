@@ -133,6 +133,8 @@ jobs:
     needs: [tag, test-r, test-rc]
     if: always() && (needs.test-r.result == 'success' || needs.test-rc.result == 'success')
     uses: ./.github/workflows/set-tag.yml
+    permissions:
+      contents: write
     with:
       # tags: ${{ toJSON(needs.tag.outputs.*) }}
       tags: >-
