@@ -9,7 +9,7 @@ use crate::ffi::FuriStatus;
 pub type Status = FuriStatus;
 
 
-impl const From<i32> for FuriStatus {
+impl From<i32> for FuriStatus {
 	fn from(v: i32) -> Self {
 		match v {
 			0 => Self::FuriStatusOk,
@@ -24,15 +24,15 @@ impl const From<i32> for FuriStatus {
 	}
 }
 
-impl const From<i32> for Error {
+impl From<i32> for Error {
 	fn from(v: i32) -> Self { unsafe { core::mem::transmute(v) } }
 }
 
-impl const From<Error> for FuriStatus {
+impl From<Error> for FuriStatus {
 	fn from(err: Error) -> Self { unsafe { core::mem::transmute(err) } }
 }
 
-impl const Try for FuriStatus {
+impl Try for FuriStatus {
 	type Output = ();
 	type Residual = Result<Infallible, Error>;
 
@@ -52,7 +52,7 @@ impl const Try for FuriStatus {
 	}
 }
 
-impl const FromResidual for FuriStatus {
+impl FromResidual for FuriStatus {
 	fn from_residual(residual: <Self as Try>::Residual) -> Self {
 		match residual {
 			Ok(_) => Self::FuriStatusOk,

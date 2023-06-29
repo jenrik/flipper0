@@ -20,7 +20,7 @@ pub fn export_main_to_manifest(entry_point: &str) -> Result {
 	if let Some(main) = manifest.main() && main != entry_point && main != fam::DEFAULT_MAIN {
 		use std::io::{Error, ErrorKind};
 		let message = format!("Entry-point name must be the same as in other source (Crate metadata or Flipper.toml), `{main}` != `{entry_point}`.");
-		return Err(box Error::new(ErrorKind::AlreadyExists, message));
+		return Err(Box::new(Error::new(ErrorKind::AlreadyExists, message)));
 	}
 
 	*(manifest.main_mut()) = Some(entry_point.to_owned());

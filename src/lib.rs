@@ -3,13 +3,11 @@
 #![cfg_attr(feature = "allocator", feature(alloc_error_handler))]
 #![cfg_attr(feature = "allocator", feature(allocator_api))]
 #![cfg_attr(feature = "allocator", feature(alloc_layout_extra))]
-#![cfg_attr(feature = "allocator", feature(nonnull_slice_from_raw_parts))]
 #![feature(core_intrinsics)]
 #![feature(try_trait_v2)]
 #![feature(try_trait_v2_residual)]
 #![feature(error_in_core)]
 #![feature(const_trait_impl)]
-#![feature(const_convert)]
 
 #[macro_use]
 extern crate alloc as _;

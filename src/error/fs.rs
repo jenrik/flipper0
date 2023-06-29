@@ -10,7 +10,7 @@ use crate::ffi::FS_Error;
 pub type Status = FS_Error;
 
 
-impl const From<i8> for Status {
+impl From<i8> for Status {
 	fn from(v: i8) -> Self {
 		match v {
 			0 => Self::FSE_OK,
@@ -28,15 +28,15 @@ impl const From<i8> for Status {
 	}
 }
 
-impl const From<i8> for Error {
+impl From<i8> for Error {
 	fn from(v: i8) -> Self { unsafe { core::mem::transmute(v) } }
 }
 
-impl const From<Error> for Status {
+impl From<Error> for Status {
 	fn from(err: Error) -> Self { unsafe { core::mem::transmute(err) } }
 }
 
-impl const Try for Status {
+impl Try for Status {
 	type Output = ();
 	type Residual = Result<Infallible, Error>;
 
@@ -59,7 +59,7 @@ impl const Try for Status {
 	}
 }
 
-impl const FromResidual for Status {
+impl FromResidual for Status {
 	fn from_residual(residual: <Self as Try>::Residual) -> Self {
 		match residual {
 			Ok(_) => Self::FSE_OK,
@@ -97,7 +97,7 @@ impl core::fmt::Display for Error {
 }
 
 
-impl const From<FS_Error> for Error {
+impl From<FS_Error> for Error {
 	fn from(value: FS_Error) -> Self {
 		assert!(!matches!(value, FS_Error::FSE_OK));
 		unsafe { core::mem::transmute(value) }

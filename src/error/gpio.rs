@@ -19,7 +19,7 @@ impl core::fmt::Display for Error {
 }
 
 
-impl const From<i8> for ErrorStatus {
+impl From<i8> for ErrorStatus {
 	fn from(v: i8) -> Self {
 		match v {
 			0 => Self::SUCCESS,
@@ -29,15 +29,15 @@ impl const From<i8> for ErrorStatus {
 	}
 }
 
-impl const From<i8> for Error {
+impl From<i8> for Error {
 	fn from(_: i8) -> Self { Self }
 }
 
-impl const From<Error> for ErrorStatus {
+impl From<Error> for ErrorStatus {
 	fn from(err: Error) -> Self { unsafe { Self::ERROR } }
 }
 
-impl const Try for ErrorStatus {
+impl Try for ErrorStatus {
 	type Output = ();
 	type Residual = Result<Infallible, Error>;
 
@@ -51,7 +51,7 @@ impl const Try for ErrorStatus {
 	}
 }
 
-impl const FromResidual for ErrorStatus {
+impl FromResidual for ErrorStatus {
 	fn from_residual(residual: <Self as Try>::Residual) -> Self {
 		match residual {
 			Ok(_) => Self::SUCCESS,

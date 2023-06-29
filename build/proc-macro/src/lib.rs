@@ -1,5 +1,4 @@
 #![feature(let_chains)]
-#![feature(box_syntax)]
 #![feature(box_patterns)]
 
 use proc_macro::TokenStream as StdTokenStream;

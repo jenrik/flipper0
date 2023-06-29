@@ -39,7 +39,7 @@ impl const Record for Storage {
 	fn tag(&self) -> &[u8; Self::LEN] { ffi::RECORD_STORAGE }
 }
 
-impl RecordExt for Storage {}
+//impl RecordExt for Storage {}
 
 
 pub(crate) struct CloseOnDrop<T>(T)

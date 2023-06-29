@@ -1,7 +1,5 @@
-#![feature(box_syntax)]
 #![feature(fs_try_exists)]
 #![feature(io_error_other)]
-#![feature(option_result_contains)]
 #![feature(exit_status_error)]
 
 extern crate bindgen;

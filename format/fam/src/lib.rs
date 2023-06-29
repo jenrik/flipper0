@@ -1,4 +1,3 @@
-#![feature(box_syntax)]
 #![allow(clippy::large_enum_variant)]
 /*! Flipper Application Manifest struct
 	 and (de)serialization methods and for export to fam `App` struct.
@@ -239,9 +238,9 @@ macro_rules! field {
 	($key:ident, iter String) => {
 		pub fn $key(&self) -> Box<dyn Iterator<Item = String> + '_> {
 			match self {
-				Self::Struct { $key, .. } => box $key.into_iter().cloned(),
+				Self::Struct { $key, .. } => Box::new($key.into_iter().cloned()),
 				Self::Json(value) => {
-					box value.as_object()
+					Box::new(value.as_object()
 					         .map(|o| {
 						         o.get(stringify!($key))
 						          .map(|v| serde_json::from_value::<Vec<String>>(v.to_owned()).ok())
@@ -249,7 +248,7 @@ macro_rules! field {
 					         })
 					         .flatten()
 					         .map(|arr| arr.into_iter())
-					         .unwrap_or(Vec::with_capacity(0).into_iter().into())
+					         .unwrap_or(Vec::with_capacity(0).into_iter().into()))
 				},
 				#[cfg(feature = "toml")]
 				Self::Toml(value) => todo!(), // TODO: toml::Value as vec to iter

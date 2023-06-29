@@ -4,7 +4,6 @@
 #![allow(incomplete_features)]
 #![feature(generic_const_exprs)]
 #![feature(min_specialization)]
-#![feature(cstr_from_bytes_until_nul)]
 #![feature(type_alias_impl_trait)]
 #![feature(trait_alias)]
 #![feature(trivial_bounds)]

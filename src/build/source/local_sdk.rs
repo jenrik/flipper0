@@ -113,7 +113,7 @@ pub fn try_build() -> Result {
 		                                             .derive_partialeq(crate::feature("derive-partialeq"))
 		                                             .derive_partialord(crate::feature("derive-partialord"))
 		                                             .generate_comments(true)
-		                                             .parse_callbacks(box DeriveCallbacks { exclude: exclusions.clone() });
+		                                             .parse_callbacks(Box::new(DeriveCallbacks { exclude: exclusions.clone() }));
 
 
 		// metadata for documentation:
