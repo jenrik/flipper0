@@ -97,6 +97,10 @@ jobs:
     needs: tag
     if: needs.tag.outputs.r
     uses: ./.github/workflows/tests.yml
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     with:
       rev: ${{ needs.tag.outputs.r }}
       source: true
@@ -111,6 +115,10 @@ jobs:
     needs: tag
     if: needs.tag.outputs.rc
     uses: ./.github/workflows/tests.yml
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
     with:
       rev: ${{ needs.tag.outputs.rc }}
       source: true
